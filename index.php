@@ -1,3 +1,8 @@
+<?php 
+require 'db.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -19,16 +24,36 @@
                 <button type="submit">Add &nbsp; <span>&#43;</span></button>
             </form>
         </div>
-        <div class="show-grat-section">
-            <div class="grat-item">
+        <?php 
+        $all = $conn -> query('SELECT * FROM all_items ORDER BY id DESC')
+        ?>
+        <div class="show-todo-section">
+            <?php if($all->rowCount() <= 0){ ?>
+            <div class="todo-item">
                 <div class="empty">
                     <img src="img/f.png" width="100%" />
                     <img src="img/Ellipsis.gif" width="80px">
                 </div>
             </div>
+            <?php } ?>
+            <?php while( $row = $all->fetch(PDO::FETCH_ASSOC) ){ ?>
+            <div class="show-section">
+                <?php if( $all -> rowCount() === 0){?>
+                <div class="item">
+                    <span id="" class="remove-to-do">x</span>
+                    <input type="checkbox" class="check-box" checked />
+                    <h2 class="checked">title 1</h2>
 
+                    <input type="checkbox" class="check-box" />
+                    <h2>title 2</h2>
+
+                    <br>
+                    <small>created: date</small>
+                </div>
+                <?php } } ?>
+
+            </div>
         </div>
-    </div>
 
 </body>
 
