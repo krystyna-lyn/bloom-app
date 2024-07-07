@@ -1,6 +1,5 @@
 <?php 
 require 'db.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +13,6 @@ require 'db.php';
 </head>
 
 <body>
-
     <div class="main-section">
         <div class="add-section">
             <form action="app/add.php" method="POST" autocomplete="off">
@@ -25,7 +23,7 @@ require 'db.php';
             </form>
         </div>
         <?php 
-        $all = $conn -> query('SELECT * FROM all_items ORDER BY id DESC')
+        $all = $conn->query('SELECT * FROM all_items ORDER BY id DESC')
         ?>
         <div class="show-todo-section">
             <?php if($all->rowCount() <= 0){ ?>
@@ -38,19 +36,23 @@ require 'db.php';
             <?php } ?>
             <?php while( $row = $all->fetch(PDO::FETCH_ASSOC) ){ ?>
             <div class="show-section">
-                <?php if( $all -> rowCount() === 0){?>
                 <div class="item">
-                    <span id="" class="remove-to-do">x</span>
-                    <input type="checkbox" class="check-box" checked />
-                    <h2 class="checked">title 1</h2>
+                    <span id="<?php echo $row['id']; ?>" class="remove-item">x</span>
 
-                    <input type="checkbox" class="check-box" />
-                    <h2>title 2</h2>
+                    <?php if($row['checked']){ ?>
 
+                    <input type="checkbox" class="check-box" data-todo-id="<?php echo $row['id']?>" checked>
+
+                    <h2 class="checked"><?php  echo $row['title']; ?></h2>
+                    <?php }else { ?>
+
+                    <input type="checkbox" class="check-box" data-todo-id="<?php echo $row['id']?>" />
+                    <h2><?php  echo $row['title']; ?></h2>
+                    <?php } ?>
                     <br>
-                    <small>created: date</small>
+                    <small>created: <?php  echo $row['date_time']; ?></small>
                 </div>
-                <?php } } ?>
+                <?php } ?>
 
             </div>
         </div>

@@ -125,7 +125,7 @@ body {
     font-family: sans-serif;
 }
 
-.remove-to-do:hover {
+.remove-item:hover {
     background: rgb(139, 97, 93);
     color: #fff;
 }
