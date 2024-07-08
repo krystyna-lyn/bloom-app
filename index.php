@@ -16,10 +16,19 @@ require 'db.php';
     <div class="main-section">
         <div class="add-section">
             <form action="app/add.php" method="POST" autocomplete="off">
+
+                <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
+                <div class="error">Fehler beim Hinzufügen</div>
+
                 <input type="text" name="title" style="border-color: #ff6666" placeholder="This field is required" />
                 <button type="submit">Add &nbsp; <span>&#43;</span></button>
+
+                <?php }else{ ?>
+
                 <input type="text" name="title" placeholder="Write here your gratitude" />
                 <button type="submit">Add &nbsp; <span>&#43;</span></button>
+
+                <?php } ?>
             </form>
         </div>
         <?php 
@@ -37,7 +46,7 @@ require 'db.php';
             <?php while( $row = $all->fetch(PDO::FETCH_ASSOC) ){ ?>
             <div class="show-section">
                 <div class="item">
-                    <span id="<?php echo $row['id']; ?>" class="remove-item">x</span>
+                    <span id="<?php echo $row['id'];?>" class="remove-item">x</span>
 
                     <?php if($row['checked']){ ?>
 
