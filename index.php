@@ -34,9 +34,9 @@ require 'db.php';
         <?php 
         $all = $conn->query('SELECT * FROM all_items ORDER BY id DESC')
         ?>
-        <div class="show-todo-section">
+        <div class="show-section">
             <?php if($all->rowCount() <= 0){ ?>
-            <div class="todo-item">
+            <div class="item">
                 <div class="empty">
                     <img src="img/f.png" width="100%" />
                     <img src="img/Ellipsis.gif" width="80px">
@@ -65,6 +65,23 @@ require 'db.php';
 
             </div>
         </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('.remove-item').click(function() {
+                const id = $(this).attr('id');
+                //alert(id)
+                $.post('app/remove.php', {
+                        id: id
+                    },
+                    data => {
+                        alert(data)
+                    }
+                );
+            })
+        })
+        </script>
 
 </body>
 

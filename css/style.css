@@ -125,6 +125,21 @@ body {
     font-family: sans-serif;
 }
 
+.item .remove-item {
+    display: block;
+    float: right;
+    width: 20px;
+    height: 20px;
+    font-family: sans-serif;
+    color: rgb(139, 97, 93);
+    text-decoration: none;
+    text-align: right;
+    padding: 0px 5px 8px 0px;
+    border-radius: 50%;
+    transition: background 1s;
+    cursor: pointer;
+}
+
 .remove-item:hover {
     background: rgb(139, 97, 93);
     color: #fff;
